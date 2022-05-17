@@ -4,7 +4,7 @@ import Loading from '../Shared/Loading';
 import UserRow from './UserRow';
 
 const Users = () => {
-    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:5000/user', {
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('https://floating-beyond-16750.herokuapp.com/user', {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -29,9 +29,8 @@ const Users = () => {
                     </thead>
                     <tbody>
                         {
-                            users.map((user, index) => <UserRow
+                            users.map(user => <UserRow
                                 key={user._id}
-                                index={index + 1}
                                 user={user}
                                 refetch={refetch}
                             ></UserRow>)
